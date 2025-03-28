@@ -1,0 +1,120 @@
+.mat-mdc-card {
+    align-items: center;
+    margin: 30px 120px;
+}
+
+.mat-mdc-card-header {
+    margin-bottom: 20px;
+}
+
+.difficultiy-badge {
+    display: inline-block;
+    padding: 7px 17px;
+    border-radius: 16px;
+    font-size: 15px;
+    color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.difficulty-beginner {
+    background-color: #006D2C;
+}
+
+.difficulty-basic {
+    background-color: #2A8F4B;
+}
+
+.difficulty-normal {
+    background-color: #C030ED;
+
+}
+
+.difficulty-medium {
+    background-color: #840884;
+
+}
+
+.difficulty-hard {
+    background-color: #F0242D;
+}
+
+.difficulty-advanced {
+    background-color: #9B1306;
+}
+
+.difficulty-unknown {
+    background-color: #607D8B;
+}
+
+.tag {
+    color: white;
+    background-color: #3f51b5;
+    padding: 7px 17px;
+    margin: 1px 2px 1px 0;
+    display: inline-block;
+    border-radius: 15px;
+    font-size: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.no-tags {
+    color: #fff;
+    background-color: #249EFF;
+    padding: 7px 33px;
+    margin: 1px 2px 1px 0;
+    border-radius: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+}
+
+.action-buttons {
+    display: flex;
+    gap: 5px; 
+    align-items: center;
+    padding: 4px;
+
+  }
+
+.action-buttons button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 7px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);  
+  }
+
+.like-button {
+    color: #388E3C; 
+    background-color: rgba(56, 142, 60, 0.1);
+  }
+  
+  .like-button:hover {
+    background-color: rgba(56, 142, 60, 0.2);
+  }
+  
+  .like-button .mat-icon {
+    color: #388E3C;
+  }
+  
+  .dislike-button {
+    color: #D32F2F; 
+    background-color: rgba(211, 47, 47, 0.1);
+  }
+  
+  .dislike-button:hover {
+    background-color: rgba(211, 47, 47, 0.2);
+  }
+  
+  .dislike-button .mat-icon {
+    color: #D32F2F;
+  }
+  
+  .count {
+    margin-left: 6px;
+    font-size: 18px;
+    font-weight: 500;
+  }
