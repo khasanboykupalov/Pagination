@@ -17,29 +17,29 @@
 }
 
 .difficulty-beginner {
-    background-color: #006D2C;
+    background-color:#43eb8e;
 }
 
 .difficulty-basic {
-    background-color: #2A8F4B;
+    background-color:#2bf04f ;
 }
 
 .difficulty-normal {
-    background-color: #C030ED;
+    background-color: #438FFF;
 
 }
 
 .difficulty-medium {
-    background-color: #840884;
+    background-color: #12c296;
 
 }
 
 .difficulty-hard {
-    background-color: #F0242D;
+    background-color: #f53a3a;
 }
 
 .difficulty-advanced {
-    background-color: #9B1306;
+    background-color: #FFF608;
 }
 
 .difficulty-unknown {
@@ -59,7 +59,7 @@
 
 .no-tags {
     color: #fff;
-    background-color: #249EFF;
+    background-color: #5cb3fa;
     padding: 7px 33px;
     margin: 1px 2px 1px 0;
     border-radius: 15px;
@@ -118,3 +118,13 @@
     font-size: 18px;
     font-weight: 500;
   }
+
+  .mat-mdc-paginator {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+  }
+
+ 
+ 
+ 
