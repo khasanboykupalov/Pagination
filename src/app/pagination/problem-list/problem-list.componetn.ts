@@ -5,7 +5,6 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { Problem } from '../interface';
-import { MatPaginator } from '@angular/material/paginator';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 
 @Component({
@@ -21,6 +20,7 @@ export class ProblemListComponent implements OnInit {
     dataSource = new MatTableDataSource<Problem>([]);
     displayedColumns: string[] = ['id', 'title', 'solved', 'author', 'tags', 'difficultyTitle', 'actions'];
 
+    //Pagaginatsiya uchu ozgaruvchi
 
     totalProblems = 0;   
     pageSize = 20; 
@@ -50,6 +50,7 @@ export class ProblemListComponent implements OnInit {
         });
     }
     
+//Paginatsiya uchun method
 
     onPageChange(event: PageEvent) {
         if (this.pageSize !== event.pageSize) {
