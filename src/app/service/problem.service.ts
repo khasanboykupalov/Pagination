@@ -15,8 +15,10 @@ export class ProblemService {
     getProblems(page: number, pageSize:number): Observable<ApiResponse> {
         const params = {
             page: page.toString(),
-            pageSize: pageSize.toString(),
+            page_size: pageSize.toString()
         };
+
+        console.log(`Backendga yuborilayotgan parametrlar: page=${page}, pageSize=${pageSize}`);
 
         return this.http.get<ApiResponse>(this.apiUrl, {params});
     }

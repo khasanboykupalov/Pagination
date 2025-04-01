@@ -1,44 +1,67 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { ProblemService } from './../../service/problem.service';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { Problem } from '../interface';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 
 @Component({
     selector: 'problem-list',
     standalone: true,
-    imports: [CommonModule, MatCardModule, MatTableModule, MatIconModule],
+    imports: [CommonModule, MatCardModule, MatTableModule, MatIconModule,  MatPaginatorModule],
     templateUrl: './problem-list.component.html',
     styleUrl: './problem-list.component.css',
 })
 export class ProblemListComponent implements OnInit {
 
     problems: Problem[] = [];
-    dataSource = new MatTableDataSource<Problem>(this.problems);
+    dataSource = new MatTableDataSource<Problem>([]);
     displayedColumns: string[] = ['id', 'title', 'solved', 'author', 'tags', 'difficultyTitle', 'actions'];
+
+
+    totalProblems = 0;   
+    pageSize = 20; 
+    currentPage = 0; 
+    pageSizeOptions = [10, 20, 50]
+    previousPageSize = this.pageSize;
 
     constructor(private problemService: ProblemService) {}
 
     ngOnInit() { 
-        this.loadProblem(1, 20);
+        this.loadProblems();
     }
-        
-    loadProblem(page: number, pageSize: number) {
-        this.problemService.getProblems(page, pageSize).subscribe({
-            next: (response) => {
-                console.log('API dan olingan javob:', response);
-                this.problems = response.data;
 
-                
-                this.dataSource.data = [...this.problems];
-                console.log('dataSource:', this.dataSource.data);
+  
+    loadProblems() {
+
+        this.problemService.getProblems(this.currentPage+1, this.pageSize).subscribe({
+            next: (response) => {
+                console.log(`Backenddan kelgan malumotlar soni: ${response.data.length}`);
+                this.dataSource.data = response.data; // DataSource uchun ma'lumotlarni yangilash
+                this.totalProblems = response.total;    
+
             }, 
             error: (err) => {
                 console.log('Xatolik:', err);
             }
         });
+    }
+    
+
+    onPageChange(event: PageEvent) {
+        if (this.pageSize !== event.pageSize) {
+            const firstItemIndex = this.currentPage * this.pageSize;
+            this.currentPage = Math.floor(firstItemIndex / event.pageSize);
+            this.previousPageSize = this.pageSize;
+        } else {
+            this.currentPage = event.pageIndex;
+        }
+
+        this.pageSize = event.pageSize;
+        this.loadProblems();
     }
 
             //  Difficulty  uchun classni olish funksiyasi

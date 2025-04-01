@@ -76,5 +76,15 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
         </table>
+
+        <mat-paginator 
+            [length]="totalProblems"
+            [pageSize]="pageSize"
+            [pageSizeOptions]="pageSizeOptions"
+            [pageIndex]="currentPage"
+            (page)="onPageChange($event)"
+            showFirstLastButtons
+            aria-label="Select page">
+      </mat-paginator>
     </mat-card-content>
 </mat-card>
