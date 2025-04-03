@@ -5,14 +5,15 @@ import { ProblemService } from './service/problem.service';
 
 
 
+
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ProblemListComponent, HttpClientModule],
+  imports: [ProblemListComponent, HttpClientModule, ],
   providers: [ ProblemService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'Pagination';
+  title = 'Kep-Problem';
 }

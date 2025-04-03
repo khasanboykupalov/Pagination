@@ -46,6 +46,9 @@
     background-color: #607D8B;
 }
 
+.mat-column-solved{
+  width: 100px !important;
+}
 .tag {
     color: white;
     background-color: #3f51b5;

@@ -18,7 +18,7 @@ export interface Problem {
     authorUsername: string;
     notSolved: number;
     attemptsCount: number;
-    hasChecker: true;
+    hasChecker: boolean;
     tags: {id: number; name: string} [];
     hasSolution: boolean;
     solutionKepcoinValue: number;
