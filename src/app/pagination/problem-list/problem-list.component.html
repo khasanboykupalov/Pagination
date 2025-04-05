@@ -11,13 +11,21 @@
             
             <!-- ID  -->
             <ng-container matColumnDef="id">
-                <th mat-header-cell *matHeaderCellDef> ID </th>
+                <th mat-header-cell *matHeaderCellDef (click)="sortById()"> ID
+                  <mat-icon class="sort-icon" *ngIf="sortField === 'id'">
+                    {{sortOrder === 'asc' ? 'arrow_upward' : 'arrow_downward'}}
+                  </mat-icon>
+                </th>
                 <td mat-cell *matCellDef="let problem"> {{problem.id}} </td>
             </ng-container>
 
             <!-- Title  -->
-            <ng-container matColumnDef="title">
-                <th mat-header-cell *matHeaderCellDef> Title </th>
+            <ng-container matColumnDef="title" >
+                <th mat-header-cell *matHeaderCellDef (click)="sortByTitle()"> Title 
+                  <mat-icon *ngIf="sortField === 'title'">
+                    {{sortOrder === 'asc' ? 'arrow_upward' : 'arrow_downward'}}
+                </mat-icon>
+                </th>
                 <td mat-cell *matCellDef="let problem"> {{problem.title}} </td>
             </ng-container>
 

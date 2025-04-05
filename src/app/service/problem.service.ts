@@ -3,7 +3,6 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { ApiResponse} from "../pagination/interface";
-import { unsubscribe } from "diagnostics_channel";
 
 @Injectable ({
     providedIn: 'root'
@@ -19,14 +18,19 @@ export class ProblemService {
         pageSize: number,
         title: string,
         difficulty: number,
-        solved?: boolean,
-        attempted?: boolean 
+        solved: boolean,
+        attempted: boolean ,
+        sortField:string,
+        sortOrder:string,
+        tags: string;
     }): Observable<ApiResponse> {
        
         let httpParams = new HttpParams()
         .set('page', params.page.toString())
         .set('page_size', params.pageSize.toString());
 
+
+        //Filter 
         if(params.title) {
             httpParams = httpParams.set('title', params.title)
         }
@@ -42,7 +46,17 @@ export class ProblemService {
         if(params.attempted !== undefined) {
             httpParams = httpParams.set('attempted', params.attempted.toString());
         }
-   
+        
+        //Saralash
+
+        if(params.sortField) {
+            const ordering = params.sortOrder === 'desc' ? `-${params.sortField}` : params.sortField
+            httpParams = httpParams.set('ordering', ordering)
+        }
+
+        if (params.tags) {
+            httpParams = httpParams.append('tags', params.tags)
+        }
 
         console.log('Backendga yuborilayotgan parametrlar:', httpParams.toString());
 

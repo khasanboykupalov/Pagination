@@ -40,8 +40,14 @@ export class ProblemListComponent implements OnInit {
     currentFilter = {
         title: '',
         difficulty: '',
-        status:''
-    }
+        status:'',
+        tags: [] 
+    } 
+
+    // Saralash uchun Ozgaruvchi
+
+    sortField: string = 'id';
+    sortOrder: string = 'asc'
 
     constructor(private problemService: ProblemService) {}
 
@@ -52,17 +58,20 @@ export class ProblemListComponent implements OnInit {
     loadProblems() {
 
         const filterParams: any = {
-            title: this.currentFilter.title,
             page: this.currentPage + 1,
-            pageSize:this.pageSize
+            pageSize:this.pageSize,
+        };
+
+        if(this.currentFilter.title) {
+            filterParams.title = this.currentFilter.title
+            
         }
 
         // Difficyltly filter
-
         if(this.currentFilter.difficulty) {
             const difficultyMap: Record<string, number> = {
-                 'basic': 1,
-                 'beginner': 2,
+                'beginner': 1,
+                 'basic': 2,
                  'normal': 3,
                  'medium': 4,
                  'advanced': 5,
@@ -73,7 +82,6 @@ export class ProblemListComponent implements OnInit {
         }
 
         //Stauts filter
-
         if(this.currentFilter.status === 'solved') {
             filterParams.solved = true;
         } else if (this.currentFilter.status === 'unsolved') {
@@ -81,6 +89,17 @@ export class ProblemListComponent implements OnInit {
         } else if (this.currentFilter.status ===  'unknown' ) {
             filterParams.attempted = false;
         }
+
+        //Tags Filter
+        if (this.currentFilter.tags && this.currentFilter.tags.length > 0) {
+            filterParams.tags = this.currentFilter.tags
+        }
+
+        // Saralash parametrlari
+        filterParams.sortField = this.sortField;
+        filterParams.sortOrder = this.sortOrder;
+
+
 
         this.problemService.getProblems(filterParams).subscribe({
             next: (response) => {
@@ -93,6 +112,28 @@ export class ProblemListComponent implements OnInit {
                 console.log('Xatolik:', err);
             }
         });
+    }
+
+    //Sort 
+
+    sortById() {
+        if(this.sortField === 'id') {
+            this.sortOrder = this.sortOrder === 'asc'? 'desc' : 'asc';
+        }else{
+            this.sortField = 'id'
+            this.sortOrder = 'asc'
+        }
+        this.loadProblems()
+    }
+
+    sortByTitle() {
+        if(this.sortField === 'title') {
+            this.sortOrder = this.sortOrder === 'asc'? 'desc' : 'asc';
+        } else {
+            this.sortField = 'title';
+            this.sortOrder = 'asc'
+        }
+        this.loadProblems();
     }
     
             //Paginatsiya uchun method
@@ -116,7 +157,6 @@ export class ProblemListComponent implements OnInit {
         this.loadProblems();
         
     }
-
             //  Difficulty  uchun classni olish funksiyasi
 
     getDifficultyClass(difficultyTitle:string): string {

@@ -1,13 +1,13 @@
 <div class="filter-container">
     <mat-form-field appearance="outline" class="filter-field">
         <mat-label>Title</mat-label>
-        <input matInput [(ngModel)]="filter.title" placeholder="Title">
+        <input matInput [(ngModel)]="filter.title" placeholder="Title"  (input)="applyFilter()">
       </mat-form-field>
 
 
         <mat-form-field appearance="outline" class="filter-field">
             <mat-label>Difficulty</mat-label>
-            <mat-select [(ngModel)]="filter.difficulty">
+            <mat-select [(ngModel)]="filter.difficulty"  (ngModelChange)="applyFilter()">
                 <mat-option *ngFor=" let option of difficultyOptions" [value]="option.value">
                     {{option.viewValue}}
                 </mat-option>
@@ -17,21 +17,20 @@
 
         <mat-form-field appearance="outline" class="filter-field">
             <mat-label>Status</mat-label>
-            <mat-select [(ngModel)]="filter.status">
+            <mat-select [(ngModel)]="filter.status"  (ngModelChange)="applyFilter()">
                 <mat-option *ngFor="let option of statusOptions" [value]="option.value">
                     {{option.viewValue}}
                 </mat-option>
             </mat-select>
         </mat-form-field>
 
-        <div class="filter-action">
-            <button mat-raised-button color="primary" (click)="applyFilter()">
-                <mat-icon>search</mat-icon>Qidirish
-            </button>
-
-            <button mat-button (click)="resetFilter()">
-                <mat-icon>clear</mat-icon> Tozalash
-            </button>
-        </div>
+        <mat-form-field appearance="outline" class="filter-field">
+            <mat-label>Tags</mat-label>
+            <mat-select [(ngModel)]="filter.tags" (ngModelChange)="applyFilter()" > 
+                <mat-option *ngFor="let option of tagOptions" [value]="option.value" > 
+                    {{option.viewValue}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
 
 </div>
