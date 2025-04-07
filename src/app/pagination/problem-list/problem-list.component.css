@@ -47,8 +47,9 @@
 }
 
 .mat-column-solved{
-  width: 100px !important;
+  width: 120px !important;
 }
+
 .tag {
     color: white;
     background-color: #3f51b5;

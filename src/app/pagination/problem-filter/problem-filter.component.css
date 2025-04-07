@@ -1,0 +1,14 @@
+.filter-container {
+    display: flex;
+    justify-content: center;
+    gap: 11px;
+    padding: 13px;
+    border-radius: 7px;
+    margin-bottom: 10px;
+}
+
+.filter-field {
+    flex-grow: 1;
+}
+
+  
