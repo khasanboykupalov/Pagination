@@ -26,3 +26,11 @@ export interface Problem {
     dislikesCount: number;
     hidden: boolean
 }
+
+export interface ProblemFilter {
+    title:string,
+    difficulty:string,
+    status:string,
+    tags:number[]
+}
+
