@@ -21,7 +21,6 @@ import { ProblemFilterComponent } from '../problem-filter/problem-filter.compone
 })
 export class ProblemListComponent implements OnInit {
 
-    problems: Problem[] = [];
     dataSource = new MatTableDataSource<Problem>([]);
     displayedColumns: string[] = ['id', 'title', 'solved', 'author', 'tags', 'difficultyTitle', 'actions'];
 
@@ -30,7 +29,6 @@ export class ProblemListComponent implements OnInit {
     pageSize = 20;
     currentPage = 0;
     pageSizeOptions = [10, 20, 50]
-    previousPageSize = this.pageSize;
 
     //Filter O'zgaruvchilari
     currentFilter = {
@@ -134,7 +132,6 @@ export class ProblemListComponent implements OnInit {
         if (this.pageSize !== event.pageSize) {
             const firstItemIndex = this.currentPage * this.pageSize;
             this.currentPage = Math.floor(firstItemIndex / event.pageSize);
-            this.previousPageSize = this.pageSize;
         } else {
             this.currentPage = event.pageIndex;
         }
@@ -145,7 +142,7 @@ export class ProblemListComponent implements OnInit {
 
     onFilterChange(filter:ProblemFilter) {
         this.currentFilter = filter;
-        this.currentPage = 0,
+        this.currentPage = 0,   
             this.loadProblems();
     }
 
